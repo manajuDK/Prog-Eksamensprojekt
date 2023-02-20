@@ -1762,19 +1762,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Marinus\\.nuget\\packages\\": {}
+    "C:\\Users\\filip\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Marinus\\OneDrive - TEC\\Dokumenter\\GitHub\\Prog-Eksamensprojekt\\Blazor Poker Nights\\Blazor Poker Nights\\Blazor Poker Nights.csproj",
+      "projectUniqueName": "C:\\Users\\filip\\Documents\\Git\\Prog-Eksamensprojekt\\Blazor Poker Nights\\Blazor Poker Nights\\Blazor Poker Nights.csproj",
       "projectName": "Blazor Poker Nights",
-      "projectPath": "C:\\Users\\Marinus\\OneDrive - TEC\\Dokumenter\\GitHub\\Prog-Eksamensprojekt\\Blazor Poker Nights\\Blazor Poker Nights\\Blazor Poker Nights.csproj",
-      "packagesPath": "C:\\Users\\Marinus\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Marinus\\OneDrive - TEC\\Dokumenter\\GitHub\\Prog-Eksamensprojekt\\Blazor Poker Nights\\Blazor Poker Nights\\obj\\",
+      "projectPath": "C:\\Users\\filip\\Documents\\Git\\Prog-Eksamensprojekt\\Blazor Poker Nights\\Blazor Poker Nights\\Blazor Poker Nights.csproj",
+      "packagesPath": "C:\\Users\\filip\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\filip\\Documents\\Git\\Prog-Eksamensprojekt\\Blazor Poker Nights\\Blazor Poker Nights\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Marinus\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\filip\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1823,8 +1823,16 @@
         "warn": true,
         "downloadDependencies": [
           {
-            "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
-            "version": "[6.0.11, 6.0.11]"
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[6.0.13, 6.0.13]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[6.0.13, 6.0.13]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[6.0.13, 6.0.13]"
           }
         ],
         "frameworkReferences": {
@@ -1832,7 +1840,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
       }
     },
     "runtimes": {

@@ -9,41 +9,41 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = browser
 build_property.RootNamespace = Blazor_Poker_Nights
 build_property.RootNamespace = Blazor_Poker_Nights
-build_property.ProjectDir = C:\Users\Marinus\OneDrive - TEC\Dokumenter\GitHub\Prog-Eksamensprojekt\Blazor Poker Nights\Blazor Poker Nights\
+build_property.ProjectDir = C:\Users\filip\Documents\Git\Prog-Eksamensprojekt\Blazor Poker Nights\Blazor Poker Nights\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Marinus\OneDrive - TEC\Dokumenter\GitHub\Prog-Eksamensprojekt\Blazor Poker Nights\Blazor Poker Nights
+build_property.MSBuildProjectDirectory = C:\Users\filip\Documents\Git\Prog-Eksamensprojekt\Blazor Poker Nights\Blazor Poker Nights
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Marinus/OneDrive - TEC/Dokumenter/GitHub/Prog-Eksamensprojekt/Blazor Poker Nights/Blazor Poker Nights/App.razor]
+[C:/Users/filip/Documents/Git/Prog-Eksamensprojekt/Blazor Poker Nights/Blazor Poker Nights/App.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Marinus/OneDrive - TEC/Dokumenter/GitHub/Prog-Eksamensprojekt/Blazor Poker Nights/Blazor Poker Nights/Pages/Counter.razor]
+[C:/Users/filip/Documents/Git/Prog-Eksamensprojekt/Blazor Poker Nights/Blazor Poker Nights/Pages/Counter.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Marinus/OneDrive - TEC/Dokumenter/GitHub/Prog-Eksamensprojekt/Blazor Poker Nights/Blazor Poker Nights/Pages/FetchData.razor]
+[C:/Users/filip/Documents/Git/Prog-Eksamensprojekt/Blazor Poker Nights/Blazor Poker Nights/Pages/FetchData.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmV0Y2hEYXRhLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Marinus/OneDrive - TEC/Dokumenter/GitHub/Prog-Eksamensprojekt/Blazor Poker Nights/Blazor Poker Nights/Pages/Index.razor]
+[C:/Users/filip/Documents/Git/Prog-Eksamensprojekt/Blazor Poker Nights/Blazor Poker Nights/Pages/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Marinus/OneDrive - TEC/Dokumenter/GitHub/Prog-Eksamensprojekt/Blazor Poker Nights/Blazor Poker Nights/Shared/SurveyPrompt.razor]
+[C:/Users/filip/Documents/Git/Prog-Eksamensprojekt/Blazor Poker Nights/Blazor Poker Nights/Shared/SurveyPrompt.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Marinus/OneDrive - TEC/Dokumenter/GitHub/Prog-Eksamensprojekt/Blazor Poker Nights/Blazor Poker Nights/_Imports.razor]
+[C:/Users/filip/Documents/Git/Prog-Eksamensprojekt/Blazor Poker Nights/Blazor Poker Nights/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Marinus/OneDrive - TEC/Dokumenter/GitHub/Prog-Eksamensprojekt/Blazor Poker Nights/Blazor Poker Nights/Shared/MainLayout.razor]
+[C:/Users/filip/Documents/Git/Prog-Eksamensprojekt/Blazor Poker Nights/Blazor Poker Nights/Shared/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-t4uf7izejv
 
-[C:/Users/Marinus/OneDrive - TEC/Dokumenter/GitHub/Prog-Eksamensprojekt/Blazor Poker Nights/Blazor Poker Nights/Shared/NavMenu.razor]
+[C:/Users/filip/Documents/Git/Prog-Eksamensprojekt/Blazor Poker Nights/Blazor Poker Nights/Shared/NavMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-hp0j2d1u8z
