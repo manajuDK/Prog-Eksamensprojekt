@@ -38,6 +38,15 @@
             }
         }
 
+        public Card draw()
+        {
+            Random rand = new Random();
+            int idx = rand.Next(0, cards.Count - 1);
+            Card chosen = this.cards[idx];
+            this.cards.RemoveAt(idx);
+            return chosen;
+        }
+
     }
 
 

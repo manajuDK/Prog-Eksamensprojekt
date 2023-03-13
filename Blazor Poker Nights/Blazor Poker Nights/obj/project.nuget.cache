@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "fhclYkVgHx7oEzseMPQy4ZPQZmbYXMA0wyWIeSvDfcyrZ4uFyEYzvIidjoBKp5CNKLzqKGcsp8Bv17s0f759AQ==",
+  "dgSpecHash": "9ke4CpqOxD02z0SJpSN3KOWxBFyilmhbtuWLcejRxuhoEJ/4HwU1hSKdQSgqceTlcUUynmwe1m/bUnpYiS/Q4Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\filip\\Documents\\Git\\Prog-Eksamensprojekt\\Blazor Poker Nights\\Blazor Poker Nights\\Blazor Poker Nights.csproj",
   "expectedPackageFiles": [
@@ -33,9 +33,7 @@
     "C:\\Users\\filip\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "C:\\Users\\filip\\.nuget\\packages\\system.text.encodings.web\\6.0.0\\system.text.encodings.web.6.0.0.nupkg.sha512",
     "C:\\Users\\filip\\.nuget\\packages\\system.text.json\\6.0.0\\system.text.json.6.0.0.nupkg.sha512",
-    "C:\\Users\\filip\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.13\\microsoft.aspnetcore.app.ref.6.0.13.nupkg.sha512",
-    "C:\\Users\\filip\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.13\\microsoft.windowsdesktop.app.ref.6.0.13.nupkg.sha512",
-    "C:\\Users\\filip\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.13\\microsoft.netcore.app.ref.6.0.13.nupkg.sha512"
+    "C:\\Users\\filip\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\6.0.14\\microsoft.netcore.app.runtime.mono.browser-wasm.6.0.14.nupkg.sha512"
   ],
   "logs": []
 }
