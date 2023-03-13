@@ -1,21 +1,18 @@
 ﻿<label for="Name">Name:</label>
-<input type="text" name="Name" @bind="name" @bind:after="SaveName"/>
+<input type="text" name="Name" @onchange="SaveName"/>
 <label for="Balance">Starting Balance:</label>
-<input type="number" name="Balance" @bind="balance" @bind:after="SaveBalance"/>
+<input type="number" name="Balance" @onchange="SaveBalance"/>
 
 @code {
 	[Parameter]
-	int index;
+	public int id { get; set; }
 
-	private string name;
-	private int balance;
-
-	private void SaveName ()
+	private void SaveName (ChangeEventArgs e)
 	{
-		GlobalInfo.userList[index].name = name;
+		GlobalInfo.userList[id].name = e.Value?.ToString();
 	}
-	private void SaveBalance ()
+	private void SaveBalance (ChangeEventArgs e)
 	{
-		GlobalInfo.userList[index].startBalance = balance;
+		GlobalInfo.userList[id].startBalance = int.Parse(e.Value?.ToString());
 	}
 }
