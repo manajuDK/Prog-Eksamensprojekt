@@ -1,0 +1,26 @@
+﻿<div class="user">
+	<h5>@Shared.GlobalInfo.userList[id].name</h5>
+	<p> Balance: @Shared.GlobalInfo.userList[id].currentBalance</p>
+</div>
+
+<style>
+	div.user {
+		border: 2px solid black;
+		/*padding*/
+	}
+
+</style>
+
+@code {
+	[Parameter]
+	public int id { get; set; }
+	//public int placement { get; set; }
+
+	protected override async Task OnInitializedAsync()
+	{
+		id = (Shared.GlobalInfo.rounds + id) % Shared.GlobalInfo.userList.Count; // så samme spiller ikke starter hver gang
+
+	}
+
+
+}

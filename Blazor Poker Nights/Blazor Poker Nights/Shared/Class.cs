@@ -2,7 +2,7 @@
 { // made by Marinus + Filip
     public class User
     {
-        public string? name { get; set; }
+        public string name { get; set; }
         public int startBalance { get; set; }
         public int currentBalance { get; set; }
         public Card[] hand { get; set; } = new Card[2];

@@ -1,6 +1,24 @@
 ﻿@page "/"
 
-<PageTitle>Index</PageTitle>
+<PageTitle>Blazor Poker Nights - Index</PageTitle>
+
+@if (test)
+{
+	<UserGameState id=0></UserGameState>
+}
+
+@code {
+	Boolean test = false;
+
+	protected override async Task OnInitializedAsync()
+	{
+		User player = new User();
+		player.name = "Joker from Persona 5";
+		Shared.GlobalInfo.userList.Add(player);
+		test = true;
+	}
 
 
+
+}
 
