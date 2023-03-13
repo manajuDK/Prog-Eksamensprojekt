@@ -1,21 +1,23 @@
-﻿<label for="Name">Name:</label>
+﻿@using Microsoft.AspNetCore.Components.Forms
+
+<label for="Name">Name:</label>
 <input type="text" name="Name" @bind="name" @bind:after="SaveName"/>
 <label for="Balance">Starting Balance:</label>
 <input type="number" name="Balance" @bind="balance" @bind:after="SaveBalance"/>
 
 @code {
 	[Parameter]
-	int index;
+	public int index { get; set; }
 
-	private string name;
-	private int balance;
+	public string name = "";
+	public int balance = 0;
 
-	private void SaveName ()
+	public async Task SaveName ()
 	{
-		GlobalInfo.userList[index].name = name;
+		Shared.GlobalInfo.userList[index].name = name;
 	}
-	private void SaveBalance ()
+	public async Task SaveBalance ()
 	{
-		GlobalInfo.userList[index].startBalance = balance;
+		Shared.GlobalInfo.userList[index].startBalance = balance;
 	}
 }
