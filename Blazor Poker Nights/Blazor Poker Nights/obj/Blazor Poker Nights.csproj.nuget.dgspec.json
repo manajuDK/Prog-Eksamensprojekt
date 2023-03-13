@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Marinus\\OneDrive - TEC\\Dokumenter\\GitHub\\Prog-Eksamensprojekt\\Blazor Poker Nights\\Blazor Poker Nights\\Blazor Poker Nights.csproj": {}
+    "C:\\Users\\filip\\Documents\\Git\\Prog-Eksamensprojekt\\Blazor Poker Nights\\Blazor Poker Nights\\Blazor Poker Nights.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Marinus\\OneDrive - TEC\\Dokumenter\\GitHub\\Prog-Eksamensprojekt\\Blazor Poker Nights\\Blazor Poker Nights\\Blazor Poker Nights.csproj": {
+    "C:\\Users\\filip\\Documents\\Git\\Prog-Eksamensprojekt\\Blazor Poker Nights\\Blazor Poker Nights\\Blazor Poker Nights.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Marinus\\OneDrive - TEC\\Dokumenter\\GitHub\\Prog-Eksamensprojekt\\Blazor Poker Nights\\Blazor Poker Nights\\Blazor Poker Nights.csproj",
+        "projectUniqueName": "C:\\Users\\filip\\Documents\\Git\\Prog-Eksamensprojekt\\Blazor Poker Nights\\Blazor Poker Nights\\Blazor Poker Nights.csproj",
         "projectName": "Blazor Poker Nights",
-        "projectPath": "C:\\Users\\Marinus\\OneDrive - TEC\\Dokumenter\\GitHub\\Prog-Eksamensprojekt\\Blazor Poker Nights\\Blazor Poker Nights\\Blazor Poker Nights.csproj",
-        "packagesPath": "C:\\Users\\Marinus\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Marinus\\OneDrive - TEC\\Dokumenter\\GitHub\\Prog-Eksamensprojekt\\Blazor Poker Nights\\Blazor Poker Nights\\obj\\",
+        "projectPath": "C:\\Users\\filip\\Documents\\Git\\Prog-Eksamensprojekt\\Blazor Poker Nights\\Blazor Poker Nights\\Blazor Poker Nights.csproj",
+        "packagesPath": "C:\\Users\\filip\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\filip\\Documents\\Git\\Prog-Eksamensprojekt\\Blazor Poker Nights\\Blazor Poker Nights\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Marinus\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\filip\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -64,7 +64,7 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
-              "version": "[6.0.11, 6.0.11]"
+              "version": "[6.0.14, 6.0.14]"
             }
           ],
           "frameworkReferences": {
@@ -72,7 +72,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {

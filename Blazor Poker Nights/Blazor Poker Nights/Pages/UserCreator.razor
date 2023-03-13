@@ -9,10 +9,10 @@
 
 	private void SaveName (ChangeEventArgs e)
 	{
-		GlobalInfo.userList[id].name = e.Value?.ToString();
+		Shared.GlobalInfo.userList[id].name = e.Value?.ToString();
 	}
 	private void SaveBalance (ChangeEventArgs e)
 	{
-		GlobalInfo.userList[id].startBalance = int.Parse(e.Value?.ToString());
+		Shared.GlobalInfo.userList[id].startBalance = int.Parse(e.Value?.ToString());
 	}
 }

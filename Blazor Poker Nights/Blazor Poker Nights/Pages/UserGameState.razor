@@ -3,7 +3,7 @@
 	{
 	<h5>@player.name</h5>
 	<p> Balance: @player.currentBalance</p>
-		<p style="color: @(player.runningBalance() < 0 ? "green" : "red" )">Running balance: @player.runningBalance()</p>
+		<p style="color: @(player.runningBalance() < 0 ? "red" : "green" )">Running balance: @player.runningBalance()</p>
 	}
 </div>
 
@@ -23,7 +23,7 @@
 	[Parameter]
 	public int id { get; set; }
 	//public int placement { get; set; }
-	User player;
+	User? player;
 
 	protected override async Task OnInitializedAsync()
 	{
