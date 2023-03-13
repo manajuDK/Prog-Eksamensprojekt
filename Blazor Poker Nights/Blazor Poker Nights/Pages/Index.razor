@@ -4,7 +4,7 @@
 
 @if (test)
 {
-	<UserCreator id="0"></UserCreator>
+	<UserGameState id=0></UserGameState>
 }
 
 @code {
@@ -13,6 +13,9 @@
 	protected override async Task OnInitializedAsync()
 	{
 		User player = new User();
+		player.name = "Joker from Persona 5";
+		player.startBalance = 200;
+		player.currentBalance = 100;
 		Shared.GlobalInfo.userList.Add(player);
 		test = true;
 	}

@@ -1,12 +1,20 @@
 ﻿<div class="user">
-	<h5>@Shared.GlobalInfo.userList[id].name</h5>
-	<p> Balance: @Shared.GlobalInfo.userList[id].currentBalance</p>
+	@if(player != null)
+	{
+	<h5>@player.name</h5>
+	<p> Balance: @player.currentBalance</p>
+		<p style="color: @(player.runningBalance() < 0 ? "green" : "red" )">Running balance: @player.runningBalance()</p>
+	}
 </div>
 
 <style>
 	div.user {
 		border: 2px solid black;
-		/*padding*/
+
+		padding-top: 5px;
+		padding-right: 30px;
+		padding-bottom: 5px;
+		padding-left: 10px;
 	}
 
 </style>
@@ -15,11 +23,12 @@
 	[Parameter]
 	public int id { get; set; }
 	//public int placement { get; set; }
+	User player;
 
 	protected override async Task OnInitializedAsync()
 	{
 		id = (Shared.GlobalInfo.rounds + id) % Shared.GlobalInfo.userList.Count; // så samme spiller ikke starter hver gang
-
+		player = Shared.GlobalInfo.userList[id];
 	}
 
 
