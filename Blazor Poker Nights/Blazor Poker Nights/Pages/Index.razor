@@ -1,26 +1,95 @@
 ﻿@page "/"
+@inject NavigationManager NavManager
 
 <PageTitle>Blazor Poker Nights - Index</PageTitle>
 
-@if (test)
-{
-	<UserGameState id=0></UserGameState>
-}
+<h3>Playercount: @count/5</h3>
+
+<div>
+	@for (int i = 0; i < count; i++)
+	{
+		<UserCreator id=i></UserCreator>
+	}
+	<button class="PlusButton" @onclick="CountUp">+</button>
+	<div class="ErrorText">
+		@if (maxCountError)
+		{
+			<p style="color: red">There is already the maximum amount of players in the game!</p>
+		}
+	</div>
+</div>
+
+<div class="StartButton">
+
+	<button @onclick="StartGame">Start</button>
+</div>
+
+<style>
+	.PlusButton {
+		width: 70px;
+		height: 70px;
+		font-size: 25px;
+		background: white;
+		border-radius: 70px;
+		float: left;
+		margin-left: 8px;
+		margin-top: 20px;
+	}
+	.ErrorText {
+		float: left;
+	}
+	.StartButton {
+		position: absolute;
+		top: 80%;
+		right: 20%;
+	}
+</style>
 
 @code {
-	Boolean test = false;
+	int count = 1;
+	Boolean maxCountError = false;
+
+	string errMsg = "";
+	Boolean displayErrMsg = false;
 
 	protected override async Task OnInitializedAsync()
 	{
-		User player = new User();
-		player.name = "Joker from Persona 5";
-		player.startBalance = 200;
-		player.currentBalance = 100;
-		Shared.GlobalInfo.userList.Add(player);
-		test = true;
+		Shared.GlobalInfo.userList.Add(new User());
 	}
 
-
-
+	private void CountUp()
+	{
+		if (count < 5)
+		{
+			count++;
+			Shared.GlobalInfo.userList.Add(new User());
+		} else
+		{
+			maxCountError = true;
+		}
+	}
+	private void StartGame()
+	{
+		for (int i = 0; i < Shared.GlobalInfo.userList.Count; i++)
+		{
+			if (Shared.GlobalInfo.userList[i].name == null)
+			{
+				errMsg = "All players must have a name";
+				Console.WriteLine(errMsg);
+			}
+			if (Shared.GlobalInfo.userList[i].startBalance <= 0)
+			{
+				errMsg = "The starting balance must be above 0";
+				Console.WriteLine(errMsg);
+			}
+		}
+		if (errMsg == "")
+		{
+			NavManager.NavigateTo("/gamepage");
+		} else
+		{
+			displayErrMsg = true;
+		}
+	}
 }
 

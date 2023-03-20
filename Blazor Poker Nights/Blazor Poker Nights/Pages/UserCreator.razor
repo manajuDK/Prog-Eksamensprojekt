@@ -1,7 +1,28 @@
-﻿<label for="Name">Name:</label>
-<input type="text" name="Name" @onchange="SaveName"/>
-<label for="Balance">Starting Balance:</label>
-<input type="number" name="Balance" @onchange="SaveBalance"/>
+﻿<style>
+	.UserCreator {
+		float: left;
+		border: 2px groove grey;
+		border-radius: 7px;
+		padding: 10px;
+		margin: 8px;
+	}
+	.UserCreatorContent {
+		float: right;
+		padding: 5px;
+	}
+</style>
+
+<div class="UserCreator">
+	<div class="UserCreatorContent">
+		<label for="Name">Name:</label>
+		<input type="text" name="Name" @onchange="SaveName" />
+	</div>
+	<br />
+	<div class="UserCreatorContent">
+		<label for="Balance">Starting Balance:</label>
+		<input type="number" name="Balance" @onchange="SaveBalance" value=500/>
+	</div>
+</div>
 
 @code {
 	[Parameter]
