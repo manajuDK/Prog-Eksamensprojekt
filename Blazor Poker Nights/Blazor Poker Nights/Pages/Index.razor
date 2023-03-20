@@ -3,6 +3,7 @@
 
 <PageTitle>Blazor Poker Nights - Index</PageTitle>
 
+<<<<<<< HEAD
 <h3>Playercount: @count/5</h3>
 
 <div>
@@ -55,6 +56,28 @@
 	protected override async Task OnInitializedAsync()
 	{
 		Shared.GlobalInfo.userList.Add(new User());
+=======
+@if (test)
+{
+	<UserGameInfo player="player"></UserGameInfo>
+}
+
+@code {
+	Boolean test = false;
+	User player = new User();
+
+	protected override async Task OnInitializedAsync()
+	{
+		
+		player.name = "Joker from Persona 5";
+		player.startBalance = 200;
+		player.currentBalance = 100;
+		Deck deck = new Deck();
+		player.hand[0] = new Card("heart",1);
+		player.hand[1] = deck.draw();
+		Shared.GlobalInfo.userList.Add(player);
+		test = true;
+>>>>>>> c08666983ff980263da81ceb59eb6d55471bf93c
 	}
 
 	private void CountUp()
