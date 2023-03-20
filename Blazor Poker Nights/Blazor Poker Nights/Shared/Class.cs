@@ -42,7 +42,7 @@
 			if (value > 10)
             {
                 string[] namelist = { "jack", "queen", "king" };
-                link += namelist[value - 10];
+                link += namelist[value - 11];
             }
             else
             {

@@ -1,13 +1,55 @@
 ﻿@page "/gamepage"
 
 <h3>GamePage</h3>
+@if (activePlayer is not null)
+{
+	<UserGameInfo player=activePlayer></UserGameInfo>
+
+	if (true)
+	{
+			<div id="userInfo">
+			<svg width="1200"
+				 height="130"
+				 xmlns="http://www.w3.org/2000/svg"
+				 xmlns:xlink="http://www.w3.org/1999/xlink">
+				@for (int z = 0; z < 3; z++)
+				{
+					<use href="@table[z].getName()" x="@(z*190)" y="10"
+						 transform="rotate(0)scale(0.5)" />
+				}
+
+			</svg>
+			</div>
+	}
+
+	@foreach (User player in players)
+	{
+		if (!player.active)
+		{
+			<div class="scores">
+				<UserGameInfo player=player></UserGameInfo>
+			</div>
+			
+		}
+		
+	}
+}
+<style>
+	div.scores{
+		width: 20%;
+		float: left;
+		margin: 5px;
+	}
+</style>
+
 
 @code {
 
 	Deck deck;
 	List<User> players = new List<User>();
-
-
+	User activePlayer;
+	Card[] table = new Card[5];
+	int turn = 0;
 
 
 
@@ -16,6 +58,10 @@
 	{
 		deck = new Deck();
 
+		for (int i = 0; i < 5; i++)
+		{
+			table[i] = deck.draw();
+		}
 
 		for (int i = 0; i < Shared.GlobalInfo.userList.Count; i++){
 			int id = (Shared.GlobalInfo.rounds + i) % Shared.GlobalInfo.userList.Count;
@@ -28,6 +74,7 @@
 			player.hand[1] = deck.draw();
 		}
 		players[0].active = true;
+		activePlayer = players[0];
 	}
 
 
