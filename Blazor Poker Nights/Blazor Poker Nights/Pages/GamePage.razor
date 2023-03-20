@@ -1,0 +1,34 @@
+﻿@page "/gamepage"
+
+<h3>GamePage</h3>
+
+@code {
+
+	Deck deck;
+	List<User> players = new List<User>();
+
+
+
+
+
+
+	protected override async Task OnInitializedAsync()
+	{
+		deck = new Deck();
+
+
+		for (int i = 0; i < Shared.GlobalInfo.userList.Count; i++){
+			int id = (Shared.GlobalInfo.rounds + i) % Shared.GlobalInfo.userList.Count;
+			players.Add(Shared.GlobalInfo.userList[id]);
+		}
+
+		foreach (User player in players)
+		{
+			player.hand[0] = deck.draw();
+			player.hand[1] = deck.draw();
+		}
+		players[0].active = true;
+	}
+
+
+}

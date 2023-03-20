@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "lt9FHUW393xuGRFWsVtN5+hGkqp0UYApLLR3/J7w6No=",
+  "Hash": "k5n9gOgdeJsP20CRhqQGFcNL72jqwSynrGr5ZP8SiOE=",
   "Source": "Blazor Poker Nights",
   "BasePath": "/",
   "Mode": "Root",
@@ -7087,6 +7087,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\index.html"
+    },
+    {
+      "Identity": "C:\\Users\\filip\\Documents\\Git\\Prog-Eksamensprojekt\\Blazor Poker Nights\\Blazor Poker Nights\\wwwroot\\svg-cards.svg",
+      "SourceId": "Blazor Poker Nights",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\filip\\Documents\\Git\\Prog-Eksamensprojekt\\Blazor Poker Nights\\Blazor Poker Nights\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "svg-cards.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\svg-cards.svg"
     }
   ]
 }

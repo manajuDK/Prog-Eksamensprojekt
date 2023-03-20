@@ -4,18 +4,22 @@
 
 @if (test)
 {
-	<UserGameState id=0></UserGameState>
+	<UserGameInfo player="player"></UserGameInfo>
 }
 
 @code {
 	Boolean test = false;
+	User player = new User();
 
 	protected override async Task OnInitializedAsync()
 	{
-		User player = new User();
+		
 		player.name = "Joker from Persona 5";
 		player.startBalance = 200;
 		player.currentBalance = 100;
+		Deck deck = new Deck();
+		player.hand[0] = new Card("heart",1);
+		player.hand[1] = deck.draw();
 		Shared.GlobalInfo.userList.Add(player);
 		test = true;
 	}

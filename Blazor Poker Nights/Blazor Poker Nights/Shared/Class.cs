@@ -7,24 +7,50 @@
         public int currentBalance { get; set; }
         public Card[] hand { get; set; } = new Card[2];
 
+        //game information:
+        public Boolean active { get; set; } = false;
         public int runningBalance()
 		{
             return currentBalance - startBalance;
         }
 
+        public int currentBet { get; set; } = 0; // den her runde
+        public void bet(int amount)
+        {
+            currentBalance -= amount;
+            currentBet += amount;
+        }
 
     }
 
     public class Card
     {
         public string suit { get; set; }
-        public int value { get; set; } // 2 -> 14 (hvor 11, 12, 13 er billedkort og 14 er es)
+        public int value { get; set; } // 1 -> 13 (hvor 11, 12, 13 er billedkort og 1 er es)
 
         public Card(string _suit, int _value)
         {
             this.suit = _suit;
             this.value = _value;
+            
         }
+
+        public string getName()
+		{
+            string link = "svg-cards.svg#";
+            link += this.suit + "_";
+			if (value > 10)
+            {
+                string[] namelist = { "jack", "queen", "king" };
+                link += namelist[value - 10];
+            }
+            else
+            {
+                link += this.value.ToString();
+            }
+            return link;
+        }
+
     }
 
     public class Deck
@@ -34,10 +60,10 @@
         public Deck()
         {
             cards = new List<Card>();
-            string[] suits = { "Hearts", "Diamond", "Spades", "Clubs" };
+            string[] suits = { "heart", "diamond", "spade", "club" };
             foreach (string suit in suits)
             {
-                for (int i = 2; i < 15; i++) // 2..14
+                for (int i = 1; i < 14; i++) // 1..13
                 {
                     cards.Add(new Card(suit, i));
                 }
