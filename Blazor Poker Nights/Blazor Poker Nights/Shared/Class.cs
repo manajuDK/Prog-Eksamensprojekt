@@ -3,7 +3,7 @@
     public class User
     {
         public string name { get; set; } = "";
-        public int startBalance { get; set; }
+        public int startBalance { get; set; } = 500;
         public int currentBalance { get; set; }
         public Card[] hand { get; set; } = new Card[2];
 

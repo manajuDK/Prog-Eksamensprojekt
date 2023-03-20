@@ -78,11 +78,17 @@
 			{
 				errMsg = "All players must have a name";
 				Console.WriteLine(errMsg);
+			} else
+			{
+				errMsg = "";
 			}
 			if (Shared.GlobalInfo.userList[i].startBalance <= 0)
 			{
 				errMsg = "The starting balance must be above 0";
 				Console.WriteLine(errMsg);
+			} else
+			{
+				errMsg = "";
 			}
 		}
 		if (errMsg == "")
