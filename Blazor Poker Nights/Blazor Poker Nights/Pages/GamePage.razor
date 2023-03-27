@@ -6,15 +6,22 @@
 @if (activePlayer is not null)
 {
 	<UserGameInfo player=activePlayer @ref="activeComp"></UserGameInfo>
+	<p>Current bet this round: @roundBet DKK; Current gold in pot: @pot DKK</p>
+	<div class="options">
+		<button @onclick="check">@(activePlayer.currentBet == roundBet ? "Check" : "Call")</button>
+		<div>
+			<button @onclick="raise">Raise</button> <input type="text" placeholder="bet amount..." @bind="betAmount" />
+		</div>
 
-	if (true)
-	{
+		<button @onclick="fold">Fold</button>
+	</div>
+	
 			<div id="userInfo">
 			<svg width="1200"
 				 height="130"
 				 xmlns="http://www.w3.org/2000/svg"
 				 xmlns:xlink="http://www.w3.org/1999/xlink">
-				@for (int z = 0; z < 3; z++)
+				@for (int z = 0; z < (turn != 0 ? turn + 2 : 0); z++)
 				{
 					<use href="@table[z].getName()" x="@(z*190)" y="10"
 						 transform="rotate(0)scale(0.5)" />
@@ -22,7 +29,7 @@
 
 			</svg>
 			</div>
-	}
+	
 
 	@foreach (User player in players)
 	{
@@ -40,9 +47,14 @@
 
 }
 <style>
-	div.scores{
+	div.scores {
 		width: 20%;
 		float: left;
+		margin: 5px;
+	}
+	.option{
+		width: 50%;
+		float: center;
 		margin: 5px;
 	}
 </style>
@@ -55,11 +67,63 @@
 	User activePlayer;
 	Card[] table = new Card[5];
 	int turn = 0;
+	int roundBet = 0;
+	int pot = 0;
 	UserGameInfo activeComp;
+	User roundEndAt; //the round ends when this user gets his turn again
+	int betAmount = 0;
 
-	public async void changeActive()
+	public void check()
 	{
-		activePlayer.active = false;
+		if (activePlayer.currentBet != roundBet)
+		{
+			int diff = roundBet - activePlayer.currentBet;
+			activePlayer.bet(diff);
+			pot += diff;
+			activePlayer.currentBet = roundBet;	
+		}
+		else if (activePlayer.name == roundEndAt.name) // doesnt work if roundEndAt spilleren folder
+		{
+			newTurn();
+		}
+		changeActive();
+	}
+
+	public void newTurn()
+	{
+		turn++;
+		roundBet = 0;
+		betAmount = 0;
+		int id = (Shared.GlobalInfo.rounds + (Shared.GlobalInfo.userList.Count - 1)) % Shared.GlobalInfo.userList.Count;
+		roundEndAt = Shared.GlobalInfo.userList[id];
+	}
+
+	public void fold()
+	{
+		players.Remove(activePlayer);
+		changeActive();
+	}
+
+	public void raise()
+	{
+		if (betAmount > 0){
+			roundBet += betAmount;
+			int diff = roundBet - activePlayer.currentBet;
+			activePlayer.bet(diff);
+			pot += diff;
+			activePlayer.currentBet = roundBet;
+			betAmount = 0;
+			changeActive();
+		}
+	}
+
+	public void changeActive()
+	{
+		if (activePlayer is not null)
+		{
+			activePlayer.active = false;
+		}
+
 		Console.WriteLine("player 1 " + players[0].name + " player 2 " + players[players.Count - 1].name);
 
 		players[players.Count - 1].active = true;
@@ -102,6 +166,7 @@
 		}
 		players[0].active = true;
 		activePlayer = players[0];
+		newTurn();
 	}
 
 
