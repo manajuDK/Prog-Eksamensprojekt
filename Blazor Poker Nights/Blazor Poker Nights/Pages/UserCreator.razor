@@ -15,12 +15,12 @@
 <div class="UserCreator">
 	<div class="UserCreatorContent">
 		<label for="Name">Name:</label>
-		<input type="text" name="Name" autocomplete="false" @onchange="SaveName" />
+		<input type="text" name="Name" autocomplete="off" @onchange="SaveName" />
 	</div>
 	<br />
 	<div class="UserCreatorContent">
 		<label for="Balance">Starting Balance:</label>
-		<input type="number" name="Balance" autocomplete="false" @onchange="SaveBalance" value=500/>
+		<input type="number" name="Balance" autocomplete="off" @onchange="SaveBalance" value=500/>
 	</div>
 </div>
 
@@ -34,12 +34,13 @@
 	}
 	private void SaveBalance (ChangeEventArgs e)
 	{
+		//Check value, if the input field is left blank you get a null value that cannot be assigned
 		try
 		{
 			Shared.GlobalInfo.userList[id].startBalance = int.Parse(e.Value?.ToString());
 		} catch
 		{
-			
+			Console.WriteLine("Failed to assign balance: number cannot be null");
 		}
 		
 	}
