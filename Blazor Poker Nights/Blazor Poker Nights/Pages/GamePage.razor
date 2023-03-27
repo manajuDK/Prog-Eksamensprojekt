@@ -168,6 +168,125 @@
 		activePlayer = players[0];
 		newTurn();
 	}
-
-
+	private int CardValue(int value)
+	{
+		if (value == 1)
+		{
+			return 14;
+		} else
+		{
+			return value;
+		}
+	}
+	private int[] FindHand(User player)
+	{
+		int[] playerVals = new int[2]; /*[0] is type of hand, 1 is High Card, 2 is Pair, 3 is Two Pair, 4 is Three of a kind, 
+		5 is Straight, 6 is Flush, 7 is Full House, 8 is Four of a Kind, 9 is Straight Flush, 10 is Royal Flush,
+		[1] is value of highest card*/
+		int[] values = new int[7];
+		string[] suits = new string[7];
+		for (int n = 0; n < 7; n++)
+		{
+			if (n < 2)
+			{
+				values[n] = player.hand[n].value;
+				suits[n] = player.hand[n].suit;
+			} else
+			{
+				values[n] = table[n - 2].value;
+				suits[n] = table[n - 2].suit;
+			}
+		}
+		//High card
+		playerVals[0] = 1;
+		playerVals[1] = values.Max();
+		//Pair, Two Pair, Three of a Kind, Full House, Four of a Kind
+		var query = values.GroupBy(x => x, (value, all) => new
+		{
+			Key = value,
+			Count = all.Count(),
+		});
+		foreach (var result in query)
+		{
+			if (result.Count == 2)
+			{
+				//Check for Two Pair
+				if (playerVals[0] == 2)
+				{
+					playerVals[0] = 3;
+					if (playerVals[0] < CardValue(result.Key))
+					{
+						playerVals[1] = CardValue(result.Key);
+					}
+				} //Check for Full House (Three of a Kind with Pair found)
+				else if (playerVals[0] == 4)
+				{
+					playerVals[0] = 7;
+				} else
+				{
+					playerVals[0] = 2;
+					playerVals[1] = CardValue(result.Key);
+				}
+			} //Check for Three of a Kind
+			else if (result.Count == 3)
+			{
+				//Check for Full House (Pair with Three of a kind found)
+				if (playerVals[0] == 2)
+				{
+					playerVals[0] = 7;
+					playerVals[1] = CardValue(result.Key);
+				} else
+				{
+					playerVals[0] = 4;
+					playerVals[1] = CardValue(result.Key);
+				}
+			} //Check for Four of a Kind
+			else if (result.Count == 4)
+			{
+				playerVals[0] = 8;
+				playerVals[1] = CardValue(result.Key);
+			}
+		}
+		//Check for Flush
+		if (suits.Distinct().Count() == 1)
+		{
+			playerVals[0] = 6;
+			playerVals[1] = values.Max();
+		}
+		//Straight, Straight Flush, Royal Flush
+		int[] sortedValues = values.OrderByDescending(x => x).ToArray();
+		int straightCount = 0;
+		for (int n = 1; n < 7; n++)
+		{
+			if (sortedValues[n - 1] - 1 == sortedValues[n])
+			{
+				straightCount++;
+				//Check for Straight
+				if (straightCount == 4)
+				{
+					//Check for Straight Flush
+					if (playerVals[0] == 6)
+					{
+						//Check for Royal Flush
+						if (CardValue(sortedValues[n - 4]) == 14)
+						{
+							playerVals[0] = 10;
+						} else
+						{
+							playerVals[0] = 9;
+							playerVals[1] = CardValue(sortedValues[n - 4]);
+						}
+					} else
+					{
+						playerVals[0] = 5;
+						playerVals[1] = CardValue(sortedValues[n - 4]);
+					}
+				}
+			} else
+			{
+				straightCount = 0;
+			}
+		}
+		return playerVals;
+	}
 }

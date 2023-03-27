@@ -59,10 +59,9 @@
 
 	protected override async Task OnInitializedAsync()
 	{
+		//Create first user
 		Shared.GlobalInfo.userList.Add(new User());
-
 	}
-
 	private void CountUp()
 	{
 		if (count < 5)
@@ -76,6 +75,7 @@
 	}
 	private void StartGame()
 	{
+		//Check if all inputs are valid before starting game
 		errMsg = "";
 		for (int i = 0; i < Shared.GlobalInfo.userList.Count; i++)
 		{
