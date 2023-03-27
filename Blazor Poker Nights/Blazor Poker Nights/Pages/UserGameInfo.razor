@@ -3,18 +3,23 @@
 	{
 	<h5>@player.name</h5>
 		<p>Current bet: @player.currentBet</p>
+		
 		if (player.active)
 		{
-			<p>Cards:</p>
-			<svg width="300"
-				 height="130"
-				 xmlns="http://www.w3.org/2000/svg"
-				 xmlns:xlink="http://www.w3.org/1999/xlink">
-				<use href="@player.hand[0].getName()" x="0" y="0"
-					 transform="rotate(0)scale(0.5)" />
-				<use href="@player.hand[1].getName()" x="87" y="0"
-					 transform="rotate(0)scale(0.5)" />
-			</svg>
+			<button @onclick="show">Show Cards: </button>
+			if (showCards)
+			{
+				<p>Cards:</p>
+				<svg width="300"
+				height="130"
+				xmlns="http://www.w3.org/2000/svg"
+				xmlns:xlink="http://www.w3.org/1999/xlink">
+					<use href="@player.hand[0].getName()" x="0" y="0"
+					transform="rotate(0)scale(0.5)" />
+					<use href="@player.hand[1].getName()" x="87" y="0"
+					transform="rotate(0)scale(0.5)" />
+				</svg>
+			}
 		}
 		
 	}
@@ -36,9 +41,12 @@
 @code {
 	[Parameter]
 	public User player { get; set; }
-	//public int placement { get; set; }
-	//User? player;
-	//public String[] cardsNames = new String[2];
+	public bool showCards { get; set; } = false;
+
+	public void show()
+	{
+		showCards = !showCards;
+	}
 
 	protected override async Task OnInitializedAsync()
 	{
