@@ -2,8 +2,8 @@
 	@if(player != null)
 	{
 	<h5>@player.name</h5>
-		<p>Current bet: @player.currentBet</p>
-		
+		<p>Current bet this round: @player.currentBet DKK</p>
+		<p>Money left: @player.currentBalance DKK</p>
 		if (player.active)
 		{
 			<button @onclick="show">Show Cards: </button>

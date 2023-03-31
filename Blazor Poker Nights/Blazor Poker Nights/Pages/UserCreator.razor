@@ -38,6 +38,7 @@
 		try
 		{
 			Shared.GlobalInfo.userList[id].startBalance = int.Parse(e.Value?.ToString());
+			Shared.GlobalInfo.userList[id].currentBalance = Shared.GlobalInfo.userList[id].startBalance;
 		} catch
 		{
 			Console.WriteLine("Failed to assign balance: number cannot be null");

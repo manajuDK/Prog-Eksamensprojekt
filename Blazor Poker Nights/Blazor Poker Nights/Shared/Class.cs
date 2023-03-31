@@ -4,7 +4,7 @@
     {
         public string name { get; set; } = "";
         public int startBalance { get; set; } = 500;
-        public int currentBalance { get; set; }
+        public int currentBalance { get; set; } = 500;
         public Card[] hand { get; set; } = new Card[2];
 
         //game information:
@@ -15,6 +15,7 @@
         }
 
         public int currentBet { get; set; } = 0; // den her runde
+        public int[] bestHand { get; set; } = new int[2];
         public void bet(int amount)
         {
             currentBalance -= amount;

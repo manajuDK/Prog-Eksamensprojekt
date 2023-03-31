@@ -1,7 +1,7 @@
 ﻿<div class="user">
 	@if(player != null)
 	{
-	<h5>@player.name</h5>
+	<!--<h5>@player.name</h5>-->
 	<p> Balance: @player.currentBalance</p>
 		<p style="color: @(player.runningBalance() < 0 ? "red" : "green" )">Running balance: @player.runningBalance()</p>
 	}
@@ -21,14 +21,14 @@
 
 @code {
 	[Parameter]
-	public int id { get; set; }
-	//public int placement { get; set; }
-	User? player;
+	//public int id { get; set; }
+	public User player { get; set;  }
+	//User? player;
 
 	protected override async Task OnInitializedAsync()
 	{
-		id = (Shared.GlobalInfo.rounds + id) % Shared.GlobalInfo.userList.Count; // så samme spiller ikke starter hver gang
-		player = Shared.GlobalInfo.userList[id];
+		//id = (Shared.GlobalInfo.rounds + id) % Shared.GlobalInfo.userList.Count; // så samme spiller ikke starter hver gang
+		//player = Shared.GlobalInfo.userList[id];
 	}
 
 

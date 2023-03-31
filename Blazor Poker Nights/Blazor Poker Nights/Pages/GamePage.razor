@@ -3,7 +3,7 @@
 
 
 <h3>GamePage</h3>
-@if (activePlayer is not null)
+@if (activePlayer is not null && !roundEnded)
 {
 	<UserGameInfo player=activePlayer @ref="activeComp"></UserGameInfo>
 	<p>Current bet this round: @roundBet DKK; Current gold in pot: @pot DKK</p>
@@ -12,25 +12,30 @@
 		<div>
 			<button @onclick="raise">Raise</button> <input type="text" placeholder="bet amount..." @bind="betAmount" />
 		</div>
-
-		<button @onclick="fold">Fold</button>
+		@if (!(turn == 1 && activePlayer.name == Shared.GlobalInfo.userList[0].name))
+		{
+			<button @onclick="fold">Fold</button>
+		}
+		
 	</div>
-	
-			<div id="userInfo">
-			<svg width="1200"
-				 height="130"
-				 xmlns="http://www.w3.org/2000/svg"
-				 xmlns:xlink="http://www.w3.org/1999/xlink">
-				@for (int z = 0; z < (turn != 0 ? turn + 2 : 0); z++)
+	if (turn > 1 && turn < 5) {
+		<h4>Table cards for round @turn:</h4>
+		<div id="userInfo">
+			<svg width="1000"
+			height="130"
+			xmlns="http://www.w3.org/2000/svg"
+			xmlns:xlink="http://www.w3.org/1999/xlink">
+				@for (int z = 0; z < (turn != 1 ? turn + 1 : 0); z++)
 				{
 					<use href="@table[z].getName()" x="@(z*190)" y="10"
-						 transform="rotate(0)scale(0.5)" />
+					transform="rotate(0)scale(0.5)" />
 				}
 
 			</svg>
-			</div>
-	
+		</div>
+	}
 
+	<p> Turn order goes counterclockwise (the next player is the rightmost player)</p>
 	@foreach (User player in players)
 	{
 		if (!player.active)
@@ -43,8 +48,61 @@
 		
 	}
 
-	<button @onclick="changeActive">Change turn</button>
 
+}
+else if (roundEnded && winner is not null)
+{
+	<h3>Winner: @winner.name</h3>
+	<h3>Table Cards:</h3>
+	<div id="userInfo">
+		<svg width="1200"
+			 height="130"
+			 xmlns="http://www.w3.org/2000/svg"
+			 xmlns:xlink="http://www.w3.org/1999/xlink">
+			@for (int z = 0; z < 5; z++)
+			{
+				<use href="@table[z].getName()" x="@(z*190)" y="10"
+					 transform="rotate(0)scale(0.5)" />
+			}
+
+		</svg>
+	</div>
+	//hands:
+	<h4> @winner.name had the hand: @handlist[winner.bestHand[0]-1]</h4>
+	<UserInfo player=@winner></UserInfo>
+	<div id="userInfo">
+		<svg width="300"
+			 height="130"
+			 xmlns="http://www.w3.org/2000/svg"
+			 xmlns:xlink="http://www.w3.org/1999/xlink">
+			<use href="@winner.hand[0].getName()" x="0" y="0"
+				 transform="rotate(0)scale(0.5)" />
+			<use href="@winner.hand[1].getName()" x="100" y="0"
+				 transform="rotate(0)scale(0.5)" />
+		</svg>
+	</div>
+
+
+	@foreach (User player in players)
+	{
+		if (player.name != winner.name)
+		{
+			<h4> @player.name had the hand: @handlist[player.bestHand[0]-1]</h4>
+			<UserInfo player=@player></UserInfo>
+			<div id="userInfo">
+				<svg width="300"
+					 height="130"
+					 xmlns="http://www.w3.org/2000/svg"
+					 xmlns:xlink="http://www.w3.org/1999/xlink">
+					<use href="@player.hand[0].getName()" x="0" y="0"
+						 transform="rotate(0)scale(0.5)" />
+					<use href="@player.hand[1].getName()" x="100" y="0"
+						 transform="rotate(0)scale(0.5)" />
+				</svg>
+			</div>
+		}
+		
+	}
 }
 <style>
 	div.scores {
@@ -72,47 +130,103 @@
 	UserGameInfo activeComp;
 	User roundEndAt; //the round ends when this user gets his turn again
 	int betAmount = 0;
+	bool roundEnded = false;
+	User winner;
+	/*  Hand list: (score - 1)
+		1 is High Card, 2 is Pair, 3 is Two Pair, 4 is Three of a kind,
+		5 is Straight, 6 is Flush, 7 is Full House, 8 is Four of a Kind, 
+		9 is Straight Flush, 10 is Royal Flush,
+	*/
+	string[] handlist = { "High Card", "Pair", "Two Pair", "Three of a kind", "Straight", "Flush", "Full House", "Four of a kind", "Straight flush", "Royal Flush"};
 
 	public void check()
 	{
-		if (activePlayer.currentBet != roundBet)
+		if (activePlayer.currentBet != roundBet && activePlayer.currentBalance != 0) // if player has not bettet enough money and is not all in
 		{
-			int diff = roundBet - activePlayer.currentBet;
+			int diff;
+			if (activePlayer.currentBalance < (roundBet - activePlayer.currentBet)) // all in
+			{
+				diff = activePlayer.currentBalance;
+			}
+			else // normal
+			{
+				diff = roundBet - activePlayer.currentBet;
+
+			}
 			activePlayer.bet(diff);
 			pot += diff;
-			activePlayer.currentBet = roundBet;	
+			activePlayer.currentBet = roundBet;
 		}
-		else if (activePlayer.name == roundEndAt.name) // doesnt work if roundEndAt spilleren folder
-		{
-			newTurn();
-		}
+		betAmount = 0; // hvis nu man skriver noget ind i raise, også trykker check
 		changeActive();
 	}
 
 	public void newTurn()
 	{
-		turn++;
-		roundBet = 0;
-		betAmount = 0;
-		int id = (Shared.GlobalInfo.rounds + (Shared.GlobalInfo.userList.Count - 1)) % Shared.GlobalInfo.userList.Count;
-		roundEndAt = Shared.GlobalInfo.userList[id];
+		if (turn < 4)
+		{
+			turn++;
+			roundBet = 0;
+			if (turn == 1)
+			{
+				roundBet = 10;
+			}
+			betAmount = 0;
+			roundEndAt = activePlayer;
+			foreach (User player in players)
+			{
+				player.currentBet = 0;
+			}
+			Console.WriteLine("Round " + turn + " end at " + roundEndAt.name);
+		}
+		else
+		{
+			winner = players[0];
+			foreach (User player in players)
+			{
+				int[] score = FindHand(player);
+				player.bestHand = score;
+				if (winner.bestHand[0] < score[0])
+				{
+					winner = player;
+				}
+				else if (winner.bestHand[0] == score[0])
+				{
+					winner = winner.bestHand[1] > score[1] ? winner : player;
+				}
+			}
+			winner.currentBalance += pot;
+			roundEnded = true;
+		}
 	}
 
 	public void fold()
 	{
+		bool roundEnd = false;
+		if (activePlayer.name == roundEndAt.name)
+		{
+			roundEnd = true;
+		}
 		players.Remove(activePlayer);
 		changeActive();
+		if (roundEnd)
+		{
+			roundEndAt = activePlayer;
+		}
+
 	}
 
 	public void raise()
 	{
-		if (betAmount > 0){
+		if (betAmount > 0 && activePlayer.currentBalance >= (betAmount + roundBet)){
 			roundBet += betAmount;
 			int diff = roundBet - activePlayer.currentBet;
 			activePlayer.bet(diff);
 			pot += diff;
 			activePlayer.currentBet = roundBet;
 			betAmount = 0;
+			roundEndAt = activePlayer;
+			betAmount = 0; // hvis nu man skriver noget ind i raise, også trykker fold
 			changeActive();
 		}
 	}
@@ -123,8 +237,6 @@
 		{
 			activePlayer.active = false;
 		}
-
-		Console.WriteLine("player 1 " + players[0].name + " player 2 " + players[players.Count - 1].name);
 
 		players[players.Count - 1].active = true;
 		User[] turnOrderChange = new User[players.Count];
@@ -141,6 +253,10 @@
 		if (activeComp.showCards)
 		{
 			activeComp.show();
+		}
+		else if (activePlayer.name == roundEndAt.name)
+		{
+			newTurn();
 		}
 	}
 
