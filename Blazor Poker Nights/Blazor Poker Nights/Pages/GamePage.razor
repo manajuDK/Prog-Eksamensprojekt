@@ -254,7 +254,7 @@ else if (roundEnded && winner is not null)
 		{
 			activeComp.show();
 		}
-		else if (activePlayer.name == roundEndAt.name)
+		if (activePlayer.name == roundEndAt.name)
 		{
 			newTurn();
 		}
