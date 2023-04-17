@@ -8,7 +8,7 @@
 <div>
 	@for (int i = 0; i < count; i++)
 	{
-		<UserCreator id=i TItem="int" userRemoved="RemoveUserComp" @ref=Comps[i]></UserCreator>
+		<UserCreator id=i @ref=Comps[i]></UserCreator>
 	}
 	<button class="PlusButton" @onclick="CountUp">+</button>
 	<button class="PlusButton" @onclick="CountDown">-</button>
@@ -57,7 +57,7 @@
 	string errMsg = "";
 	Boolean displayErrMsg = false;
 
-	List<UserCreator<int>> Comps = new List<UserCreator<int>>(new UserCreator<int>[5]);
+	List<UserCreator> Comps = new List<UserCreator>(new UserCreator[5]);
 
 	protected override async Task OnInitializedAsync()
 	{
@@ -75,21 +75,10 @@
 			maxCountError = true;
 		}
 	}
-	public async void RemoveUserComp(int id)
-	{
-		count--;
-		for (int i = id; i < Comps.Count; i++)
-		{
-			Comps[i].id = Comps[i].id - 1;
-		}
-	}
 	private void CountDown()
 	{
-		if (count > 0)
-		{
-			count--;
-			Shared.GlobalInfo.userList.RemoveAt(Shared.GlobalInfo.userList.Count);
-		}
+		Comps[count].RemoveUser();
+		count--;
 	}
 	private void StartGame()
 	{

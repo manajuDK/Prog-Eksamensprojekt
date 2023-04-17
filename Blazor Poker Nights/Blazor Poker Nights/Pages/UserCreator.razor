@@ -1,6 +1,4 @@
-﻿@typeparam TItem
-
-<style>
+﻿<style>
 	.UserCreator {
 		float: left;
 		border: 2px groove grey;
@@ -26,9 +24,6 @@
 			<label for="Balance">Starting Balance:</label>
 			<input type="number" name="Balance" autocomplete="off" @onchange="SaveBalance" value=500 />
 		</div>
-		<div class="UserCreatorContent">
-			<button @onclick="RemoveUser">-</button>
-		</div>
 	</div>
 }
 
@@ -36,9 +31,6 @@
 @code {
 	[Parameter]
 	public int id { get; set; }
-
-	[Parameter]
-	public EventCallback<TItem> userRemoved { get; set; }
 
 	private bool isActive = true;
 
@@ -63,6 +55,5 @@
 	{
 		Shared.GlobalInfo.userList.RemoveAt(id);
 		isActive = false;
-		await userRemoved.InvokeAsync();
 	}
 }
