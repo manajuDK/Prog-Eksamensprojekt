@@ -57,7 +57,7 @@
 	string errMsg = "";
 	Boolean displayErrMsg = false;
 
-	List<UserCreator> Comps = new List<UserCreator>(new UserCreator[5]);
+	UserCreator[] Comps = new UserCreator[6];
 
 	protected override async Task OnInitializedAsync()
 	{
@@ -79,6 +79,7 @@
 	{
 		Comps[count].RemoveUser();
 		count--;
+		maxCountError = false;
 	}
 	private void StartGame()
 	{
