@@ -1,8 +1,12 @@
-﻿<div class="user">
+﻿<!--
+	Skrevet af Filip
+-->
+<div class="user">
 	@if(player != null)
 	{
 	<!--<h5>@player.name</h5>-->
 	<p> Balance: @player.currentBalance</p>
+		// Spillerens running balance aka hvor mange penge der har vundet/mister er enten rød eller grøn, afhængig af og værdien er over 0.
 		<p style="color: @(player.runningBalance() < 0 ? "red" : "green" )">Running balance: @player.runningBalance()</p>
 	}
 </div>
@@ -21,15 +25,8 @@
 
 @code {
 	[Parameter]
-	//public int id { get; set; }
 	public User player { get; set;  }
-	//User? player;
 
-	protected override async Task OnInitializedAsync()
-	{
-		//id = (Shared.GlobalInfo.rounds + id) % Shared.GlobalInfo.userList.Count; // så samme spiller ikke starter hver gang
-		//player = Shared.GlobalInfo.userList[id];
-	}
 
 
 }

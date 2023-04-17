@@ -1,5 +1,5 @@
 ﻿namespace Blazor_Poker_Nights.Shared
-{ // made by Marinus + Filip
+{ // Lavet af Filip + Marinus i fællesskab
     public class User
     {
         public string name { get; set; } = "";
