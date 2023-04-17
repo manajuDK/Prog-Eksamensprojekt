@@ -1,4 +1,6 @@
-﻿<style>
+﻿@typeparam TItem
+
+<style>
 	.UserCreator {
 		float: left;
 		border: 2px groove grey;
@@ -12,21 +14,33 @@
 	}
 </style>
 
-<div class="UserCreator">
-	<div class="UserCreatorContent">
-		<label for="Name">Name:</label>
-		<input type="text" name="Name" autocomplete="off" @onchange="SaveName" />
+@if (isActive)
+{
+	<div class="UserCreator">
+		<div class="UserCreatorContent">
+			<label for="Name">Name:</label>
+			<input type="text" name="Name" autocomplete="off" @onchange="SaveName" />
+		</div>
+		<br />
+		<div class="UserCreatorContent">
+			<label for="Balance">Starting Balance:</label>
+			<input type="number" name="Balance" autocomplete="off" @onchange="SaveBalance" value=500 />
+		</div>
+		<div class="UserCreatorContent">
+			<button @onclick="RemoveUser">-</button>
+		</div>
 	</div>
-	<br />
-	<div class="UserCreatorContent">
-		<label for="Balance">Starting Balance:</label>
-		<input type="number" name="Balance" autocomplete="off" @onchange="SaveBalance" value=500/>
-	</div>
-</div>
+}
+
 
 @code {
 	[Parameter]
 	public int id { get; set; }
+
+	[Parameter]
+	public EventCallback<TItem> userRemoved { get; set; }
+
+	private bool isActive = true;
 
 	private void SaveName (ChangeEventArgs e)
 	{
@@ -43,6 +57,12 @@
 		{
 			Console.WriteLine("Failed to assign balance: number cannot be null");
 		}
-		
+
+	}
+	public async void RemoveUser() 
+	{
+		Shared.GlobalInfo.userList.RemoveAt(id);
+		isActive = false;
+		await userRemoved.InvokeAsync();
 	}
 }

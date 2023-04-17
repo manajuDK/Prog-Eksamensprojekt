@@ -3,15 +3,15 @@
 
 <PageTitle>Blazor Poker Nights - Index</PageTitle>
 
-
 <h3>Playercount: @count/5</h3>
 
 <div>
 	@for (int i = 0; i < count; i++)
 	{
-		<UserCreator id=i></UserCreator>
+		<UserCreator id=i TItem="int" userRemoved="RemoveUserComp" @ref=Comps[i]></UserCreator>
 	}
 	<button class="PlusButton" @onclick="CountUp">+</button>
+	<button class="PlusButton" @onclick="CountDown">-</button>
 	<div class="ErrorText">
 		@if (maxCountError)
 		{
@@ -57,6 +57,8 @@
 	string errMsg = "";
 	Boolean displayErrMsg = false;
 
+	List<UserCreator<int>> Comps = new List<UserCreator<int>>(new UserCreator<int>[5]);
+
 	protected override async Task OnInitializedAsync()
 	{
 		//Create first user
@@ -71,6 +73,22 @@
 		} else
 		{
 			maxCountError = true;
+		}
+	}
+	public async void RemoveUserComp(int id)
+	{
+		count--;
+		for (int i = id; i < Comps.Count; i++)
+		{
+			Comps[i].id = Comps[i].id - 1;
+		}
+	}
+	private void CountDown()
+	{
+		if (count > 0)
+		{
+			count--;
+			Shared.GlobalInfo.userList.RemoveAt(Shared.GlobalInfo.userList.Count);
 		}
 	}
 	private void StartGame()
