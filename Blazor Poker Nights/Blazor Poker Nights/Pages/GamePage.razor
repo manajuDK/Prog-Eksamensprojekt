@@ -188,7 +188,7 @@ else if (roundEnded && winner is not null) // a winner have been found
 			{
 				player.currentBet = 0;
 			}
-		
+
 		}
 		else
 		{
@@ -309,7 +309,7 @@ else if (roundEnded && winner is not null) // a winner have been found
 		}
 		players[0].active = true;
 		activePlayer = players[0];
-		
+
 		newTurn();
 	}
 
@@ -349,22 +349,35 @@ else if (roundEnded && winner is not null) // a winner have been found
 	private int[] FindHand(User player)
 	{
 		int[] playerVals = new int[2]; /*[0] is type of hand, 1 is High Card, 2 is Pair, 3 is Two Pair, 4 is Three of a kind, 
-		5 is Straight, 6 is Flush, 7 is Full House, 8 is Four of a Kind, 9 is Straight Flush, 10 is Royal Flush,
-		[1] is value of highest card*/
+	5 is Straight, 6 is Flush, 7 is Full House, 8 is Four of a Kind, 9 is Straight Flush, 10 is Royal Flush,
+	[1] is value of highest card*/
 		int[] values = new int[7];
 		string[] suits = new string[7];
 		for (int n = 0; n < 7; n++)
 		{
 			if (n < 2)
 			{
-				values[n] = player.hand[n].value;
+				if (player.hand[n].value == 1)
+				{
+					values[n] = 14;
+				} else
+				{
+					values[n] = player.hand[n].value;
+				}
 				suits[n] = player.hand[n].suit;
 			} else
 			{
-				values[n] = table[n - 2].value;
+				if (table[n - 2].value == 1)
+				{
+					values[n] = 14;
+				} else
+				{
+					values[n] = table[n - 2].value;
+				}
 				suits[n] = table[n - 2].suit;
 			}
 		}
+		Console.WriteLine("Name: " + player.name + " Values: " + string.Join(", ",values) + " Suits: " + string.Join(", ", suits));
 		//High card
 		playerVals[0] = 1;
 		playerVals[1] = values.Max();
