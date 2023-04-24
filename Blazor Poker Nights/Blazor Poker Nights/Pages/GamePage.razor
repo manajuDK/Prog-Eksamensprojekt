@@ -10,13 +10,11 @@
 @if (activePlayer is not null && !roundEnded) // Game is ongoing
 {
 	<UserGameInfo player=activePlayer @ref="activeComp"></UserGameInfo> // active player
-	<p>Current bet this round: @roundBet DKK; Current gold in pot: @pot DKK</p>
+	<p>Current bet this round: @roundBet DKK; Current gold in pot: @pot DKK</p> // game info
 	// Game options (call/check, fold, raise)
 	<div class="options">
 		<button @onclick="check">@(activePlayer.currentBet == roundBet ? "Check" : "Call")</button>
-		<div>
-			<button @onclick="raise">Raise</button> <input type="text" placeholder="bet amount..." @bind="betAmount" />
-		</div>
+		<button @onclick="raise">Raise</button> <input type="text" placeholder="bet amount..." @bind="betAmount" />
 		@if (!(turn == 1 && activePlayer.name == Shared.GlobalInfo.userList[0].name))
 		{
 			<button @onclick="fold">Fold</button>
@@ -75,7 +73,7 @@ else if (roundEnded && winner is not null) // a winner have been found
 		</svg>
 	</div>
 	//hands:
-	<h4> @winner.name had the hand: @handlist[winner.bestHand[0]-1]</h4>
+	<h4> @winner.name had the hand: @handArray[winner.bestHand[0]-1]</h4>
 	<UserInfo player=@winner></UserInfo>
 	// cards:
 	<div id="userInfo">
@@ -95,7 +93,7 @@ else if (roundEnded && winner is not null) // a winner have been found
 	{
 		if (player.name != winner.name)
 		{
-			<h4> @player.name had the hand: @handlist[player.bestHand[0]-1]</h4>
+			<h4> @player.name had the hand: @handArray[player.bestHand[0]-1]</h4>
 			<UserInfo player=@player></UserInfo>
 			<div id="userInfo">
 				<svg width="300"
@@ -150,7 +148,7 @@ else if (roundEnded && winner is not null) // a winner have been found
 		5 is Straight, 6 is Flush, 7 is Full House, 8 is Four of a Kind, 
 		9 is Straight Flush, 10 is Royal Flush,
 	*/
-	string[] handlist = { "High Card", "Pair", "Two Pair", "Three of a kind", "Straight", "Flush", "Full House", "Four of a kind", "Straight flush", "Royal Flush"};
+	string[] handArray = { "High Card", "Pair", "Two Pair", "Three of a kind", "Straight", "Flush", "Full House", "Four of a kind", "Straight flush", "Royal Flush"};
 
 	public void check()
 	{

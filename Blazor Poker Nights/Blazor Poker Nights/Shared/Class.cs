@@ -42,8 +42,8 @@
             link += this.suit + "_";
 			if (value > 10)
             {
-                string[] namelist = { "jack", "queen", "king" };
-                link += namelist[value - 11];
+                string[] nameArray = { "jack", "queen", "king" };
+                link += nameArray[value - 11];
             }
             else
             {
@@ -88,8 +88,6 @@
     {
         static public List<User> userList { get; set; } = new List<User>();
         static public int rounds { get; set; } = 0;
-
-
     }
 
 

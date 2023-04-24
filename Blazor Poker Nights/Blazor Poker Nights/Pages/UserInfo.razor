@@ -4,7 +4,7 @@
 <div class="user">
 	@if(player != null)
 	{
-	<!--<h5>@player.name</h5>-->
+	
 	<p> Balance: @player.currentBalance</p>
 		// Spillerens running balance aka hvor mange penge der har vundet/mister er enten rød eller grøn, afhængig af og værdien er over 0.
 		<p style="color: @(player.runningBalance() < 0 ? "red" : "green" )">Running balance: @player.runningBalance()</p>
